@@ -48,5 +48,10 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "author": {
+    "name": "hubidaxiong",
+    "email": "779503577@qq.com",
+    "url": "https://github.com/dajiangjunok"
   }
 }
