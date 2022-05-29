@@ -2,6 +2,7 @@
   <div class="home">
     <h1>Home</h1>
     <h2>{{ mainStore.name }}</h2>
+    <el-button type="danger">你好</el-button>
   </div>
 </template>
 

@@ -20,11 +20,9 @@ yarn  commit
 | chore    | 变更构建流程或辅助工具(比如更改测试环境)                                               |
 | revert   | 代码回退                                                                               |
 
- 
-
 ### 一. 代码规范
 
-#### 1.1.集成editorconfig配置
+#### 1.1.集成 editorconfig 配置
 
 EditorConfig 有助于为不同 IDE 编辑器上处理同一项目的多个开发人员维护一致的编码风格。
 
@@ -46,24 +44,22 @@ max_line_length = off
 trim_trailing_whitespace = false
 ```
 
-VSCode 安装插件：EditorConfig for VS Code.   配合以上editorconfig配置
+VSCode 安装插件：EditorConfig for VS Code. 配合以上 editorconfig 配置
 
-
-
-### 1.2. 使用prettier工具
+### 1.2. 使用 prettier 工具
 
 代码格式化工具，用以统一整体代码风格，支持 JavaScript、TypeScript、CSS、SCSS、Less、JSX、Angular、Vue、GraphQL、JSON、Markdown 等语言
 
 1.安装 `yarn add prettier -D`
 
-2..配置.prettierrc文件：
+2..配置.prettierrc 文件：
 
-* useTabs：使用tab缩进还是空格缩进，选择false；
-* tabWidth：tab是空格的情况下，是几个空格，选择2个；
-* printWidth：当行字符的长度，推荐80，也有人喜欢100或者120；
-* singleQuote：使用单引号还是双引号，选择true，使用单引号；
-* trailingComma：在多行输入的尾逗号是否添加，设置为 `none`；
-* semi：语句末尾是否要加分号，默认值true，选择false表示不加；
+- useTabs：使用 tab 缩进还是空格缩进，选择 false；
+- tabWidth：tab 是空格的情况下，是几个空格，选择 2 个；
+- printWidth：当行字符的长度，推荐 80，也有人喜欢 100 或者 120；
+- singleQuote：使用单引号还是双引号，选择 true，使用单引号；
+- trailingComma：在多行输入的尾逗号是否添加，设置为 `none`；
+- semi：语句末尾是否要加分号，默认值 true，选择 false 表示不加；
 
 ```json
 {
@@ -76,7 +72,7 @@ VSCode 安装插件：EditorConfig for VS Code.   配合以上editorconfig配置
 }
 ```
 
-3.创建.prettierignore忽略文件
+3.创建.prettierignore 忽略文件
 
 ```json
 /dist/*
@@ -90,54 +86,48 @@ VSCode 安装插件：EditorConfig for VS Code.   配合以上editorconfig配置
 /public/*
 ```
 
-4.VSCode需要安装prettier的插件 配合以上配置
+4.VSCode 需要安装 prettier 的插件 配合以上配置
 
-5.测试，在package.json中配置一个scripts：
+5.测试，在 package.json 中配置一个 scripts：
 
 ```js
     "prettier": "prettier --write ."
 ```
 
+### 1.3.使用 esLint 检测
 
+1.VSCode 需要安装 ESLint 插件：
 
-### 1.3.使用esLint检测
-
-1.VSCode需要安装ESLint插件：
-
-2.解决eslint和prettier冲突的问题：【不同版本间有不通的解决方案】
+2.解决 eslint 和 prettier 冲突的问题：【不同版本间有不通的解决方案】
 
 3.详解可查看项目配置
 
+### 1.4. git Husky 和 eslint
 
+利用 eslint 和 husky 对 git 提交进行规范【husky 是一个 git hook 工具，可以帮助我们触发 git 提交的各个阶段：pre-commit、commit-msg、pre-push】
 
-### 1.4. git Husky和eslint
-
-利用eslint 和 husky 对git 提交进行规范【husky是一个git hook工具，可以帮助我们触发git提交的各个阶段：pre-commit、commit-msg、pre-push】
-
-使用husky:       安装-初始化
+使用 husky: 安装-初始化
 
 ```js
 yarn add husky
-husky-init 
+husky-init
 ```
-
-
 
 ### 1.5.git commit 规范
 
 #### 1.5.1. 代码提交风格
 
-通常我们的git commit会按照统一的风格来提交，这样可以快速定位每次提交的内容，方便之后对版本进行控制。但是如果每次手动来编写这些是比较麻烦的事情，我们可以使用一个工具：**Commitizen**
+通常我们的 git commit 会按照统一的风格来提交，这样可以快速定位每次提交的内容，方便之后对版本进行控制。但是如果每次手动来编写这些是比较麻烦的事情，我们可以使用一个工具：**Commitizen**
 
 **Commitizen** 是一个帮助我们编写规范 commit message 的工具；
 
-1.安装Commitizen
+1.安装 Commitizen
 
 ```js
 yarn add commitizen -D
 ```
 
-2.安装cz-conventional-changelog，并且初始化cz-conventional-changelog：
+2.安装 cz-conventional-changelog，并且初始化 cz-conventional-changelog：
 
 ```js
 yarn add cz-conventional-changelog --save-dev --save-exact
@@ -146,9 +136,9 @@ commitizen init
 npx commitizen init cz-conventional-changelog --save-dev --save-exact
 ```
 
-这个命令会帮助我们安装cz-conventional-changelog：
+这个命令会帮助我们安装 cz-conventional-changelog：
 
-并且在package.json中进行配置：
+并且在 package.json 中进行配置：
 
 ```json
 "config": {
@@ -160,7 +150,7 @@ npx commitizen init cz-conventional-changelog --save-dev --save-exact
 
 这个时候我们提交代码需要使用 `npx cz`：
 
-将脚本条件到package.json
+将脚本条件到 package.json
 
 ```json
  "scripts": {
@@ -175,7 +165,7 @@ npx commitizen init cz-conventional-changelog --save-dev --save-exact
 
 #### 1.5.2. 代码提交验证
 
-防止 `git commit` 方式 提交代码。我们可以通过commitlint来限制提交；
+防止 `git commit` 方式 提交代码。我们可以通过 commitlint 来限制提交；
 
 1.安装 @commitlint/config-conventional 和 @commitlint/cli
 
@@ -183,7 +173,7 @@ npx commitizen init cz-conventional-changelog --save-dev --save-exact
 yarn add @commitlint/config-conventional @commitlint/cli -D
 ```
 
-2.在根目录创建commitlint.config.js文件，配置commitlint
+2.在根目录创建 commitlint.config.js 文件，配置 commitlint
 
 ```js
 module.exports = {
@@ -191,25 +181,8 @@ module.exports = {
 }
 ```
 
-3.使用husky生成commit-msg文件，验证提交信息
+3.使用 husky 生成 commit-msg 文件，验证提交信息
 
 ```js
 npx husky add .husky/commit-msg "npx --no-install commitlint --edit $1"
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
