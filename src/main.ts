@@ -1,24 +1,7 @@
 import { createApp } from 'vue'
 import { globalRegister } from './global'
 import { createPinia } from 'pinia'
-import auth from './lib/auth'
-
-// 如果用户未登录，就会自动跳转到登录页面
-auth.prepare().then(({ user, appState }) => {
-  // 如果用户第一次进来，会跳转到登录页面
-  // 跳转前的地址会作为 targetUrl 存储
-  const targetUrl = appState ? appState.targetUrl : null
-
-  // 在这里根据实际情况处理
-  // 这里只是粗暴的页面替换
-  if (targetUrl) {
-    window.location.replace(targetUrl)
-    return
-  }
-
-  console.log(user.profile)
-  // 将登陆人信息存入store
-})
+import { oidcCheck } from '@/lib/oidc'
 
 import App from './App.vue'
 
@@ -35,5 +18,8 @@ const app = createApp(App)
 app.use(globalRegister)
 app.use(router)
 app.use(createPinia())
+
+// 拿到store对象后开始认证
+oidcCheck()
 
 app.mount('#app')

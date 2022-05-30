@@ -1,8 +1,8 @@
-import { defineStore } from 'pinia'
+import useAuthStore from './auth/index'
 
-export const useMainStore = defineStore({
-  id: 'main',
-  state: () => ({
-    name: '超级管理员'
-  })
-})
+// 统一导出useStore方法
+export default function useStore() {
+  return {
+    auth: useAuthStore()
+  }
+}
