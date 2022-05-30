@@ -33,7 +33,7 @@ import {
   ElImage,
   ElDialog
 } from 'element-plus'
-import 'element-plus/theme-chalk/index.css'
+// import 'element-plus/theme-chalk/index.css'
 // import 'element-plus/theme-chalk/el-loading.css'
 // import 'element-plus/theme-chalk/el-message.css'
 

@@ -3,7 +3,9 @@ import { globalRegister } from './global'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 
-import '@/assets/css/index.less'
+// import 'element-plus/theme-chalk/src/common/var.scss'
+// import 'element-plus/theme-chalk/index.css'
+import '@/assets/css/index.scss'
 import 'normalize.css'
 
 import router from './router'
