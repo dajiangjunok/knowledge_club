@@ -1,17 +1,64 @@
 <!DOCTYPE html>
-<html lang="">
+<html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+
+    <title><%= process.env.VUE_APP_SITE_TITLE %></title>
+
+    <link href="<%= BASE_URL %>favicon.ico?v=<%= VUE_APP_BUILD_VERSION %>" rel="icon" />
+    <style>
+      body,h1,h2,h3,h4,h5,h6,li,ol,p,ul{margin:0;padding:0}
+      input,select,textarea{font-size:100%}
+      a img{border:0}
+      a{text-decoration:none}
+      ol,ul{list-style:none}
+      img{max-width:100%}
+      #app,body,html{position:relative;z-index:1;width:100%;height:100%;overflow:hidden}
+      body{font-size:12px;-webkit-overflow-scrolling:touch;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%!important;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+      a{font-size:12px;text-decoration:none;color:#2e82ff}
+    </style>
   </head>
+
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong>请您启用浏览器的 JavaScript 功能，以保证我们能为您正常提供服务。</strong>
     </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
+
+    <div id="app">
+      <style>
+        .loading-wrap{display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+        .loading-wrap__img{width:250px;height:162px}
+        .loading-wrap__title{margin-top:18px;color:#333;font-size:24px;text-align:center}
+        .errmsg{position:absolute;left:50%;top:50%;margin-top:-20px;width:500px;font-size:18px;transform:translate(-50%,-50%)}
+        .errmsg__icon-area{width:100%;text-align:center}
+        .errmsg__icon-area img{width:500px;max-width:100%}
+        .errmsg__operate{margin-top:20px;text-align:center}
+        .errmsg__operate .logout-btn{margin-left:24px}
+        .u-hidden {display: none;}
+      </style>
+      <div id="loading" class="loading-wrap">
+        <div>
+          <img class="loading-wrap__img" src="<%= BASE_URL %>static/images/loading.png" alt="正在加载..." />
+          <p class="loading-wrap__title">正在加载...</p>
+        </div>
+      </div>
+
+      <div id="error" class="errmsg u-hidden">
+        <div class="errmsg__icon-area">
+          <img src="<%= BASE_URL %>static/images/error.png" />
+        </div>
+        <div class="errmsg__message">刷新后尝试获取数据</div>
+        <div class="errmsg__operate">
+          <button class="md-button md-button--primary is-plain" onclick="location.reload()">
+            刷新
+          </button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
