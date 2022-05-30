@@ -1,12 +1,10 @@
 import { createApp } from 'vue'
 import { globalRegister } from './global'
 import { createPinia } from 'pinia'
-import { oidcCheck } from '@/lib/oidc'
+import { oidcCheck, catchError, main } from '@/lib/oidc'
 
 import App from './App.vue'
 
-// import 'element-plus/theme-chalk/src/common/var.scss'
-// import 'element-plus/theme-chalk/index.css'
 import '@/assets/css/index.scss'
 import 'normalize.css'
 
@@ -20,6 +18,8 @@ app.use(router)
 app.use(createPinia())
 
 // 拿到store对象后开始认证
-oidcCheck()
-
-app.mount('#app')
+oidcCheck().then(() => {
+  main()
+    .then(() => app.mount('#app'))
+    .catch(catchError)
+})
