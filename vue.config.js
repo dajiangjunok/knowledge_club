@@ -8,6 +8,7 @@ module.exports = defineConfig({
   transpileDependencies: ['@mdfe/*'],
   lintOnSave: false,
   devServer: {
+    https: true,
     port: 3000,
     proxy: require('./config/proxy.ts')
     // proxy: {
