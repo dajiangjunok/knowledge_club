@@ -1,14 +1,22 @@
 <template>
-  <router-view />
+  <div class="#app">
+    <Layout>
+      <router-view />
+    </Layout>
+  </div>
 </template>
 
-<style>
-#app {
-  text-align: center;
-  color: var(--ep-text-color-primary);
-}
+<script lang="ts">
+import { defineComponent } from 'vue'
+import Layout from '@/layouts/Layout.vue'
 
-.element-plus-logo {
-  width: 50%;
-}
-</style>
+export default defineComponent({
+  name: '',
+  components: {
+    Layout
+  },
+  setup() {
+    return {}
+  }
+})
+</script>
