@@ -3,8 +3,8 @@
     <el-avatar :size="20" :src="avatarUri" />
     <el-dropdown>
       <span class="avatar-dropdown">
-        <span class="name">{{ user.name }}</span>
-        <el-icon class="el-icon--right">
+        <span class="name" :style="`color:${color};`">{{ user.name }}</span>
+        <el-icon class="el-icon--right" :style="`color:${color};`">
           <ArrowDown />
         </el-icon>
       </span>
@@ -44,6 +44,11 @@ export default defineComponent({
       type: String,
       default:
         'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
+    },
+    // 名字颜色
+    color: {
+      type: String,
+      default: '#222222'
     }
   },
   setup(props, { emit }) {

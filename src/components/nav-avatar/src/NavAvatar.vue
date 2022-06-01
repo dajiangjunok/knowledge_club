@@ -1,6 +1,7 @@
 <template>
   <div class="nav-avatar">
     <YJAvatar
+      :color="color"
       @onLinkMine="onLinkMine"
       @onLinkManage="onLinkManage"
       @onLogout="onLogout"
@@ -16,6 +17,13 @@ import auth from '@/lib/auth'
 
 export default defineComponent({
   name: 'NavAvatar',
+  props: {
+    // 名字颜色
+    color: {
+      type: String,
+      default: '#222222'
+    }
+  },
   components: {
     YJAvatar
   },

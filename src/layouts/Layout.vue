@@ -55,7 +55,7 @@ export default defineComponent({
   }
 
   & > .layout-main {
-    background-color: skyblue;
+    background-color: #f0f2f5;
     // height: 100%;
   }
 

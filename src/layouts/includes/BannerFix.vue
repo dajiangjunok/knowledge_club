@@ -5,7 +5,7 @@
     </div>
     <div class="center">
       <el-input
-        v-model="searchVal"
+        v-model="searchValue"
         placeholder="请输入关键词"
         class="search-input"
         clearable
@@ -28,16 +28,18 @@
 import { defineComponent, ref } from 'vue'
 import NavAvatar from '@/components/nav-avatar/index'
 
+import { useSearch } from './hooks/useSearch'
+
 export default defineComponent({
   name: 'BannerFix',
   components: {
     NavAvatar
   },
   setup() {
-    const searchVal = ref('')
+    const { searchValue } = useSearch()
 
     return {
-      searchVal
+      searchValue
     }
   }
 })
