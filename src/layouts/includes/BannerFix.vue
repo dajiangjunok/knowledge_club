@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import NavAvatar from '@/components/nav-avatar/index'
 
 import { useSearch } from './hooks/useSearch'
