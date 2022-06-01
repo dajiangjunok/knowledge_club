@@ -11,7 +11,7 @@
         <BannerFix v-show="isFixBanner" />
       </transition>
     </div>
-    <div class="layout-main">
+    <div class="layout-main" :class="{ fix: isFixBanner }">
       <slot />
     </div>
   </div>
@@ -58,9 +58,12 @@ export default defineComponent({
     background-color: #f0f2f5;
     // height: 100%;
   }
+  & > .layout-main.fix {
+    padding-top: 135px;
+  }
 
   // 头部固定
-  & > .fix.layout-header {
+  & > .layout-header.fix {
     position: fixed;
     top: 0;
     left: 0;

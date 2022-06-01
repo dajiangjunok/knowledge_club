@@ -57,11 +57,20 @@ export default defineComponent({
   min-height: 135px;
   max-height: 135px;
 
+  .center {
+    flex: 7;
+  }
   .left,
   .right {
+    flex: 2;
     padding: 0 10px;
     position: relative;
     top: -40px;
+  }
+
+  .right {
+    display: flex;
+    justify-content: end;
   }
 
   & > .left .title {
@@ -71,7 +80,8 @@ export default defineComponent({
 
   .search-input {
     height: 48px;
-    width: 746px;
+    // width: 746px;
+    width: 100%;
 
     ::v-deep .el-input__wrapper {
       border-radius: 48px;
