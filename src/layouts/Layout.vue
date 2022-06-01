@@ -18,9 +18,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue'
+import { defineComponent } from 'vue'
 import Banner from './includes/Banner.vue'
 import BannerFix from './includes/BannerFix.vue'
+import useBannerFix from './hooks/useBannerFix'
 
 export default defineComponent({
   name: 'Layout',
@@ -29,24 +30,8 @@ export default defineComponent({
     BannerFix
   },
   setup() {
-    const layoutRef = ref()
-    const bannerRef = ref()
-    const isFixBanner = ref(false)
-
-    onMounted(() => {
-      const layoutEl: Element = layoutRef.value
-      const bannerEl: Element = bannerRef.value
-
-      layoutEl.addEventListener('scroll', () => {
-        if (layoutEl.scrollTop > bannerEl.clientHeight) {
-          // 此时滚动的距离超过了头部banner高度，需要渐隐藏原有banner，
-          // 改为新较窄banner，并定位于顶部
-          isFixBanner.value = true
-        } else {
-          isFixBanner.value = false
-        }
-      })
-    })
+    // 处理头部banner 固定/不固定
+    const { layoutRef, bannerRef, isFixBanner } = useBannerFix()
 
     return {
       layoutRef,
@@ -61,14 +46,12 @@ export default defineComponent({
 .layout {
   display: flex;
   flex-direction: column;
+  background-color: #f0f2f5;
   height: 100vh;
   overflow: auto;
 
   & > .layout-header {
     width: 100%;
-    // background-color: orange;
-    // min-height: 135px;
-    // max-height: 135px;
   }
 
   & > .layout-main {
@@ -76,25 +59,33 @@ export default defineComponent({
     // height: 100%;
   }
 
-  .fix.layout-header {
+  // 头部固定
+  & > .fix.layout-header {
     position: fixed;
     top: 0;
     left: 0;
-    // min-height: 50px;
-    // max-height: 50px;
-    // background-color: red;
   }
 
   .fix-enter-from,
   .fix-leave-to {
     opacity: 0;
-    transition: 1s all;
+  }
+
+  .fix-enter-active,
+  .fix-leave-active {
+    transition: all 1s ease;
+  }
+
+  .fix-leave-active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
   }
 
   .fix-leave-from,
   .fix-enter-to {
     opacity: 1;
-    transition: 1s all;
   }
 }
 </style>

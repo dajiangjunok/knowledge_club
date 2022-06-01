@@ -1,8 +1,6 @@
 import { initAuthClient } from '@mdfe/auth'
 
-const origin = process.env.VUE_APP_PUBLIC_PATH
-
-console.log(process.env.VUE_APP_PUBLIC_PATH)
+const origin = process.env.BASE_URL
 
 const auth = initAuthClient({
   client_id: 'mcrp',

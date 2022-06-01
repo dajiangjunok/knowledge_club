@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { IAuthState } from './type'
 
-const useAuthStore = defineStore('auth', {
+export const useAuthStore = defineStore('auth', {
   state: (): IAuthState => {
     return {
       user: {}
@@ -13,5 +13,3 @@ const useAuthStore = defineStore('auth', {
     }
   }
 })
-
-export default useAuthStore
