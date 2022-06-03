@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <ul>
-      <li v-for="i in 100" :key="i">
+      <li v-for="i in 20" :key="i">
         {{ i }}
       </li>
     </ul>
