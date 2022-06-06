@@ -55,6 +55,8 @@ export default defineComponent({
   }
 
   & > .layout-main {
+    padding: 16px 44px;
+
     background-color: #f0f2f5;
     // height: 100%;
   }

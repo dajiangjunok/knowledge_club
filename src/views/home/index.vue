@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <ul>
-      <li v-for="i in 20" :key="i">
-        {{ i }}
-      </li>
-    </ul>
+    <div class="left">
+      <!-- 收藏，足迹 -->
+    </div>
+    <div class="center">2</div>
+    <div class="right">3</div>
   </div>
 </template>
 
@@ -18,4 +18,22 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.home {
+  height: 100%;
+  display: flex;
+
+  & > .left {
+    flex: 4;
+    height: 100%;
+    background-color: #fff;
+  }
+  & > .center {
+    flex: 9;
+    margin: 0 14px;
+  }
+  & > .right {
+    flex: 4;
+  }
+}
+</style>
