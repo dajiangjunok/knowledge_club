@@ -12,6 +12,21 @@
           <span>未读：11</span>
         </div>
       </div>
+      <div class="more">
+        <el-dropdown trigger="click">
+          <span class="el-dropdown-link">
+            <i class="more-icon">...</i>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item>
+                <Icon icon="iconyonghuming" />
+                Action 1</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
     </div>
     <div class="slip"></div>
   </div>
@@ -19,30 +34,32 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+
 export default defineComponent({
   name: 'SideTree',
-  props: {
-    icon: {
-      type: String,
-      required: true
-    },
-    title: {
-      type: String,
-      required: true
-    },
-    totle: {
-      type: Number,
-      default: 0
-    },
-    unread: {
-      type: Number,
-      default: 0
-    },
-    treeData: {
-      type: Object,
-      default: () => ({})
-    }
-  },
+  // props: {
+  //   icon: {
+  //     type: String,
+  //     required: true
+  //   },
+  //   title: {
+  //     type: String,
+  //     required: true
+  //   },
+  //   totle: {
+  //     type: Number,
+  //     default: 0
+  //   },
+  //   unread: {
+  //     type: Number,
+  //     default: 0
+  //   },
+  //   treeData: {
+  //     type: Object,
+  //     default: () => ({})
+  //   }
+  // },
+
   setup() {
     return {}
   }
@@ -53,13 +70,13 @@ export default defineComponent({
 @import '~@/assets/css/variables.scss';
 
 .side-tree {
-  padding: 10px 16px;
-  border: 1px solid #ebebeb;
-  border-radius: 6px;
-
   & > .main {
+    padding: 10px 16px;
+    border: 1px solid #ebebeb;
+    border-radius: 6px;
     display: flex;
     align-items: center;
+    cursor: pointer;
 
     & > .icon {
       margin-right: 16px;
@@ -80,6 +97,22 @@ export default defineComponent({
       & > .title {
         font-size: 16px;
         color: $color-2;
+      }
+    }
+
+    & > .more {
+      display: none;
+      margin-left: auto;
+
+      .more-icon {
+        font-size: 18px;
+        color: $primary;
+      }
+    }
+
+    &:hover {
+      & > .more {
+        display: block;
       }
     }
   }
