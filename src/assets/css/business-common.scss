@@ -1,0 +1,13 @@
+@import './variables.scss';
+
+#app{
+  min-width: 1200px;
+  font-family:PingFang SC;
+}
+
+// 分割线
+.partition{
+  margin: 0 8px;
+  color: $color-d;
+  font-style: normal;
+}

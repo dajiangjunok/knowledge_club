@@ -1,7 +1,8 @@
 <template>
   <div class="banner">
     <div class="left">
-      <span class="title">mediinfo 知识库</span>
+      <!-- <span class="title">mediinfo 知识库</span> -->
+      <img src="~@/assets/img/logo_white.png" alt="logo" />
     </div>
     <div class="center">
       <el-input

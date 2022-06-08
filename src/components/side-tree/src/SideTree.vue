@@ -8,6 +8,7 @@
         <p class="title">产品研发</p>
         <div class="desc">
           <span>总数：67</span>
+          <i class="partition">|</i>
           <span>未读：11</span>
         </div>
       </div>
@@ -49,6 +50,8 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+@import '~@/assets/css/variables.scss';
+
 .side-tree {
   padding: 10px 16px;
   border: 1px solid #ebebeb;
@@ -73,7 +76,19 @@ export default defineComponent({
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+
+      & > .title {
+        font-size: 16px;
+        color: $color-2;
+      }
     }
+  }
+
+  .desc {
+    margin-top: 4px;
+    font-size: 12px;
+    color: $color-6;
+    font-weight: 500;
   }
 }
 </style>

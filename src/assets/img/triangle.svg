@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="19px" viewBox="0 0 18 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 10</title>
+    <g id="知识库" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2.1空间详情-详情" transform="translate(-720.000000, -205.000000)">
+            <g id="编组-11" transform="translate(720.000000, 204.000000)">
+                <g id="编组-10" transform="translate(0.000000, 1.000000)">
+                    <polygon id="三角形" fill="#60C7C7" points="8.72727273 9.73636047 18 15.7363605 1.42108547e-13 15.7363605"></polygon>
+                    <polygon id="三角形备份" fill="#53BEBE" transform="translate(6.223895, 9.200965) rotate(114.000000) translate(-6.223895, -9.200965) " points="5.80574532 6.17333826 14.7257629 12.2285914 -2.27797187 10.2459525"></polygon>
+                    <polygon id="三角形备份-2" fill="#85E0E0" transform="translate(11.723560, 9.099627) scale(-1, 1) rotate(114.000000) translate(-11.723560, -9.099627) " points="11.4163375 6.07200033 20.336355 12.1272535 3.11076397 9.64631707"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
