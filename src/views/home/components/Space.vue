@@ -5,6 +5,7 @@
     </slot>
     <!-- 树结构 -->
     <SideTree />
+    <SideTree />
   </div>
 </template>
 

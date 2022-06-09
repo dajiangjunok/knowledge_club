@@ -2,7 +2,9 @@
   <div class="side-tree">
     <div class="main">
       <div class="icon">
-        <i class="icon-container"></i>
+        <div class="icon-container">
+          <Picture style="width: 2em; height: 2em; margin: 0 auto" />
+        </div>
       </div>
       <div class="content">
         <p class="title">产品研发</p>
@@ -28,15 +30,30 @@
         </el-dropdown>
       </div>
     </div>
-    <div class="slip"></div>
+    <div class="slip">
+      <el-tree
+        :data="treeData"
+        @node-click="handleNodeClick"
+        :props="{ class: customNodeClass }"
+      >
+        <template #default="{ node }">
+          <i class="iconfont" :class="treeClass(node.type)"></i>
+          <span>{{ node.label }}</span>
+        </template>
+      </el-tree>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
+import { Picture } from '@element-plus/icons-vue'
 
 export default defineComponent({
   name: 'SideTree',
+  components: {
+    Picture
+  },
   // props: {
   //   icon: {
   //     type: String,
@@ -61,7 +78,75 @@ export default defineComponent({
   // },
 
   setup() {
-    return {}
+    interface Tree {
+      label: string
+      type: string
+      children?: Tree[]
+    }
+
+    const treeData: Tree[] = [
+      {
+        label: 'HALO',
+        type: 'category',
+        children: [
+          {
+            label: '病理质控',
+            type: 'folder'
+          },
+          {
+            label: '设计规范',
+            type: 'folder',
+            children: [
+              {
+                label: '设计对照表-细节对照',
+                type: 'file'
+              },
+              {
+                label: '设计对照表-细节对照',
+                type: 'file'
+              }
+            ]
+          }
+        ]
+      }
+    ]
+
+    const customNodeClass = (data: Tree) => {
+      switch (data.type) {
+        case 'category':
+          return 'category'
+        case 'folder':
+          return 'folder'
+        case 'file':
+          return 'file'
+        default:
+          return null
+      }
+    }
+
+    const treeClass = computed((type: string) => {
+      switch (type) {
+        case 'category':
+          return 'iconyonghuming'
+        case 'folder':
+          return 'iconshijian-k'
+        case 'file':
+          return 'iconsearch'
+        default:
+          return null
+      }
+    })
+
+    const handleNodeClick = (treeData: Tree) => {
+      console.log(treeData)
+    }
+
+    return {
+      treeData,
+      handleNodeClick,
+      customNodeClass,
+      treeClass
+    }
   }
 })
 </script>
@@ -70,6 +155,7 @@ export default defineComponent({
 @import '~@/assets/css/variables.scss';
 
 .side-tree {
+  margin-bottom: 12px;
   & > .main {
     padding: 10px 16px;
     border: 1px solid #ebebeb;
@@ -81,11 +167,14 @@ export default defineComponent({
     & > .icon {
       margin-right: 16px;
       & > .icon-container {
-        display: inline-block;
+        display: flex;
+        align-items: center;
         width: 38px;
         height: 38px;
         border-radius: 6px;
-        background-color: pink;
+        font-size: 14px;
+        color: #fff;
+        background-image: linear-gradient(159.93deg, #8fc6fe 0%, #0080ff 100%);
       }
     }
 
@@ -122,6 +211,27 @@ export default defineComponent({
     font-size: 12px;
     color: $color-6;
     font-weight: 500;
+  }
+  ::v-deep .el-tree-node__expand-icon {
+    display: none;
+  }
+
+  ::v-deep .category {
+    color: $color-2;
+    font-size: 14px;
+    font-weight: medium;
+  }
+
+  ::v-deep .folder {
+    color: $color-2;
+    font-size: 14px;
+    font-weight: normal;
+  }
+
+  ::v-deep .file {
+    color: $color-2;
+    font-size: 14px;
+    font-weight: normal;
   }
 }
 </style>
