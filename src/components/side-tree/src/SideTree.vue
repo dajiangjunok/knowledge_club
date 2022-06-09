@@ -1,6 +1,6 @@
 <template>
   <div class="side-tree">
-    <div class="main">
+    <div class="main" :class="{ active: isShowSlip }" @click="handleRoom">
       <div class="icon">
         <div class="icon-container">
           <Picture style="width: 2em; height: 2em; margin: 0 auto" />
@@ -14,7 +14,7 @@
           <span>未读：11</span>
         </div>
       </div>
-      <div class="more">
+      <div class="more" @click.stop>
         <el-dropdown trigger="click">
           <span class="el-dropdown-link">
             <i class="more-icon">...</i>
@@ -30,14 +30,17 @@
         </el-dropdown>
       </div>
     </div>
-    <div class="slip">
+    <div class="slip" v-show="isShowSlip">
       <el-tree
         :data="treeData"
         @node-click="handleNodeClick"
         :props="{ class: customNodeClass }"
       >
-        <template #default="{ node }">
-          <i class="iconfont" :class="treeClass(node.type)"></i>
+        <template #default="{ node, data }">
+          <i
+            class="margin-right-4 iconfont color-primary"
+            :class="treeClass(data)"
+          ></i>
           <span>{{ node.label }}</span>
         </template>
       </el-tree>
@@ -46,8 +49,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { Picture } from '@element-plus/icons-vue'
+import { useTree } from './hooks/useTree'
 
 export default defineComponent({
   name: 'SideTree',
@@ -78,70 +82,17 @@ export default defineComponent({
   // },
 
   setup() {
-    interface Tree {
-      label: string
-      type: string
-      children?: Tree[]
+    const isShowSlip = ref(false)
+
+    const handleRoom = () => {
+      isShowSlip.value = !isShowSlip.value
     }
 
-    const treeData: Tree[] = [
-      {
-        label: 'HALO',
-        type: 'category',
-        children: [
-          {
-            label: '病理质控',
-            type: 'folder'
-          },
-          {
-            label: '设计规范',
-            type: 'folder',
-            children: [
-              {
-                label: '设计对照表-细节对照',
-                type: 'file'
-              },
-              {
-                label: '设计对照表-细节对照',
-                type: 'file'
-              }
-            ]
-          }
-        ]
-      }
-    ]
-
-    const customNodeClass = (data: Tree) => {
-      switch (data.type) {
-        case 'category':
-          return 'category'
-        case 'folder':
-          return 'folder'
-        case 'file':
-          return 'file'
-        default:
-          return null
-      }
-    }
-
-    const treeClass = computed((type: string) => {
-      switch (type) {
-        case 'category':
-          return 'iconyonghuming'
-        case 'folder':
-          return 'iconshijian-k'
-        case 'file':
-          return 'iconsearch'
-        default:
-          return null
-      }
-    })
-
-    const handleNodeClick = (treeData: Tree) => {
-      console.log(treeData)
-    }
+    const { treeData, customNodeClass, treeClass, handleNodeClick } = useTree()
 
     return {
+      isShowSlip,
+      handleRoom,
       treeData,
       handleNodeClick,
       customNodeClass,
@@ -157,12 +108,18 @@ export default defineComponent({
 .side-tree {
   margin-bottom: 12px;
   & > .main {
+    margin-bottom: 6px;
     padding: 10px 16px;
     border: 1px solid #ebebeb;
     border-radius: 6px;
     display: flex;
     align-items: center;
     cursor: pointer;
+
+    &.active {
+      background-color: #e6f3ff;
+      border: 1px solid #e6f3ff;
+    }
 
     & > .icon {
       margin-right: 16px;
@@ -214,6 +171,18 @@ export default defineComponent({
   }
   ::v-deep .el-tree-node__expand-icon {
     display: none;
+  }
+
+  ::v-deep .el-tree-node__content {
+    margin-bottom: 6px;
+
+    &:hover {
+      background-color: #e6f3ff;
+    }
+  }
+
+  .el-tree {
+    --el-tree-node-hover-bg-color: #e6f3ff;
   }
 
   ::v-deep .category {

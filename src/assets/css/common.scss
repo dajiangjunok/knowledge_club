@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .text-center {
   text-align: center;
 }
@@ -158,4 +160,8 @@
 
 .color-6{
   color: #666666;
+}
+
+.color-primary{
+  color: $primary;
 }
