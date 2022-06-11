@@ -4,13 +4,18 @@
       <p class="space-title color-6 margin-bottom-16">知识空间</p>
     </slot>
     <!-- 树结构 -->
-    <SideTree />
-    <SideTree />
+    <SideTree
+      v-for="i in 6"
+      :index="i"
+      :isSelect="i === treeIndex"
+      :key="i"
+      @change="handleSideTreeChange"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import SideTree from '@/components/side-tree'
 
 export default defineComponent({
@@ -19,7 +24,16 @@ export default defineComponent({
     SideTree
   },
   setup() {
-    return {}
+    const treeIndex = ref(-1) //-1为一个都没选中
+
+    const handleSideTreeChange = (currentIndex: number) => {
+      treeIndex.value = currentIndex
+    }
+
+    return {
+      treeIndex,
+      handleSideTreeChange
+    }
   }
 })
 </script>

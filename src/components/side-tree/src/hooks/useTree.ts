@@ -11,7 +11,7 @@ interface ITree {
   handleNodeClick: (treeData: Tree) => void
 }
 
-export function useTree(): ITree {
+export function useTree(changeSelect: () => void): ITree {
   const treeData: Tree[] = [
     {
       label: 'HALO',
@@ -66,6 +66,7 @@ export function useTree(): ITree {
   }
 
   const handleNodeClick = (treeData: Tree) => {
+    changeSelect()
     console.log(treeData)
   }
 

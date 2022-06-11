@@ -1,5 +1,5 @@
 <template>
-  <div class="side-tree">
+  <div class="side-tree" :class="{ 'is-select': isSelect }">
     <div class="main" :class="{ active: isShowSlip }" @click="handleRoom">
       <div class="icon">
         <div class="icon-container">
@@ -58,37 +58,59 @@ export default defineComponent({
   components: {
     Picture
   },
-  // props: {
-  //   icon: {
-  //     type: String,
-  //     required: true
-  //   },
-  //   title: {
-  //     type: String,
-  //     required: true
-  //   },
-  //   totle: {
-  //     type: Number,
-  //     default: 0
-  //   },
-  //   unread: {
-  //     type: Number,
-  //     default: 0
-  //   },
-  //   treeData: {
-  //     type: Object,
-  //     default: () => ({})
-  //   }
-  // },
+  emits: ['change'],
+  props: {
+    isSelect: {
+      type: Boolean,
+      default: false
+    },
+    index: {
+      type: Number,
+      required: true
+    }
+    //   icon: {
+    //     type: String,
+    //     required: true
+    //   },
+    //   title: {
+    //     type: String,
+    //     required: true
+    //   },
+    //   totle: {
+    //     type: Number,
+    //     default: 0
+    //   },
+    //   unread: {
+    //     type: Number,
+    //     default: 0
+    //   },
+    //   treeData: {
+    //     type: Object,
+    //     default: () => ({})
+    //   }
+  },
 
-  setup() {
+  setup(props, { emit }) {
     const isShowSlip = ref(false)
 
     const handleRoom = () => {
-      isShowSlip.value = !isShowSlip.value
+      if (!isShowSlip.value) {
+        // console.log(props.index)
+        isShowSlip.value = true
+        emit('change', props.index)
+      } else {
+        isShowSlip.value = false
+        emit('change', -1)
+      }
+      // isShowSlip.value = !isShowSlip.value
     }
 
-    const { treeData, customNodeClass, treeClass, handleNodeClick } = useTree()
+    const changeSelect = (): void => {
+      emit('change', -1)
+    }
+
+    const { treeData, customNodeClass, treeClass, handleNodeClick } =
+      useTree(changeSelect)
 
     return {
       isShowSlip,
@@ -107,6 +129,11 @@ export default defineComponent({
 
 .side-tree {
   margin-bottom: 12px;
+
+  &.is-select > .active {
+    background-color: #e6f3ff;
+    border: 1px solid #e6f3ff;
+  }
   & > .main {
     margin-bottom: 6px;
     padding: 10px 16px;
@@ -116,10 +143,10 @@ export default defineComponent({
     align-items: center;
     cursor: pointer;
 
-    &.active {
-      background-color: #e6f3ff;
-      border: 1px solid #e6f3ff;
-    }
+    // &.active {
+    //   background-color: #e6f3ff;
+    //   border: 1px solid #e6f3ff;
+    // }
 
     & > .icon {
       margin-right: 16px;
