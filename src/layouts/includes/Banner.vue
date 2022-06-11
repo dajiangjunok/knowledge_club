@@ -10,6 +10,7 @@
         placeholder="请输入关键词"
         class="search-input"
         clearable
+        @change="handleChangeSearch"
       >
         <template #prefix>
           <i class="iconfont iconshijian-k" />|&nbsp;&nbsp;
@@ -30,6 +31,7 @@ import { defineComponent } from 'vue'
 import NavAvatar from '@/components/nav-avatar/index'
 
 import { useSearch } from './hooks/useSearch'
+import { useLinkSearch } from './hooks/useLinkSearch'
 
 export default defineComponent({
   name: 'Banner',
@@ -40,8 +42,11 @@ export default defineComponent({
   setup() {
     const { searchValue } = useSearch()
 
+    const { handleChangeSearch } = useLinkSearch()
+
     return {
-      searchValue
+      searchValue,
+      handleChangeSearch
     }
   }
 })

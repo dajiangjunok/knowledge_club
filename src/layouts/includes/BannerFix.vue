@@ -1,7 +1,13 @@
 <template>
   <div class="banner-fix">
     <div class="left">
-      <span class="title">mediinfo 知识库</span>
+      <span class="pointer title" @click="handleBackHome">mediinfo 知识库</span>
+      <!-- <img
+        class="pointer"
+        src="~@/assets/img/logo_blue.png"
+        alt="logo"
+        @click="handleBackHome"
+      /> -->
     </div>
     <div class="center">
       <el-input
@@ -9,6 +15,7 @@
         placeholder="请输入关键词"
         class="search-input"
         clearable
+        @change="handleChangeSearch"
       >
         <template #prefix>
           <i class="iconfont iconshijian-k" />|&nbsp;&nbsp;
@@ -29,6 +36,8 @@ import { defineComponent } from 'vue'
 import NavAvatar from '@/components/nav-avatar/index'
 
 import { useSearch } from './hooks/useSearch'
+import { useLinkSearch } from './hooks/useLinkSearch'
+import { useBackHome } from './hooks/useBackHome'
 
 export default defineComponent({
   name: 'BannerFix',
@@ -37,9 +46,13 @@ export default defineComponent({
   },
   setup() {
     const { searchValue } = useSearch()
+    const { handleChangeSearch } = useLinkSearch()
+    const { handleBackHome } = useBackHome()
 
     return {
-      searchValue
+      searchValue,
+      handleChangeSearch,
+      handleBackHome
     }
   }
 })

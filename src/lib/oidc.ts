@@ -19,7 +19,7 @@ export async function oidcCheck(): Promise<any> {
     return
   }
   // 将登陆人信息存入store
-  store.auth.updataUser(user.profile)
+  store.auth.updateUser(user.profile)
 }
 /**
  * 认证失败

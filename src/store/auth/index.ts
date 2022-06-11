@@ -8,7 +8,7 @@ export const useAuthStore = defineStore('auth', {
     }
   },
   actions: {
-    updataUser(user: any): void {
+    updateUser(user: any): void {
       this.user = user
     }
   }

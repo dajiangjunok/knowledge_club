@@ -61,7 +61,7 @@ export default defineComponent({
     // height: 100%;
   }
   & > .layout-main.fix {
-    padding-top: 135px;
+    padding-top: 65px;
   }
 
   // 头部固定

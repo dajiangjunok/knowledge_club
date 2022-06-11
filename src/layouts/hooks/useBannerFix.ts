@@ -1,9 +1,13 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useLayoutStore } from '@/store/layout'
 
 export default function useBannerFix() {
   const layoutRef = ref()
   const bannerRef = ref()
-  const isFixBanner = ref(false)
+  const layoutStore = useLayoutStore()
+  const { isFixBanner } = storeToRefs(layoutStore)
+
   let scrollListenerFn: any
   let layoutEl: Element
   let bannerEl: Element

@@ -1,12 +1,12 @@
 @import './variables.scss';
 
-#app{
+#app {
   min-width: 1200px;
-  font-family:PingFang SC;
+  font-family: PingFang SC;
 }
 
 // 分割线
-.partition{
+.partition {
   margin: 0 8px;
   color: $color-d;
   font-style: normal;
