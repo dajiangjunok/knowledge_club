@@ -186,5 +186,3 @@ module.exports = {
 ```js
 npx husky add .husky/commit-msg "npx --no-install commitlint --edit $1"
 ```
-
-## 摸鱼
